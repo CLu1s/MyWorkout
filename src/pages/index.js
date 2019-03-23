@@ -1,21 +1,49 @@
-import React from "react"
+import React,{ useState, useEffect } from 'react';
+import BigScreen from '../components/BigScreen';
 import { Link } from "gatsby"
 
 import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
+import { graphql } from "gatsby"
 
-const IndexPage = () => (
+function returnFilteredObject(object,filter){
+  if(object.name == filter){
+    return true
+  }
+  return false
+}
+
+const IndexPage = ({data}) => {
+  const dataOfLuis = data.allWorkoutsJson.edges.find(item => returnFilteredObject(item.node,"luis"));
+  const dataOfMilhy = data.allWorkoutsJson.edges.find(item => returnFilteredObject(item.node,"milhy"));
+  return (
   <Layout>
     <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
-)
+    <BigScreen dataOfLuis={dataOfLuis.node} dataOfMilhy={dataOfMilhy.node} />
+  </Layout> );
+}
 
 export default IndexPage
+
+
+export const query = graphql`
+query {
+  allWorkoutsJson {
+    edges {
+      node {
+        name
+        exerciseArrayPosition
+        exercises {
+          name
+          weight
+          serie
+          maxSerie
+          reps
+          tempo
+          restTime
+        }
+      }
+    }
+  }
+}
+`

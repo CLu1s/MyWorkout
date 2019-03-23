@@ -1,0 +1,15 @@
+{
+  "name": "milhy",
+  "exerciseArrayPosition":0,
+  "exercises": [
+    {
+      "name": "Peso Muerto",
+      "weight": 20,
+      "serie": 1,
+      "maxSerie": 4,
+      "reps": 15,
+      "tempo": "3,0,2,1",
+      "restTime": 40
+    }
+  ]
+}
