@@ -7,7 +7,7 @@ const NormalButton = ({className,children,...props}) => (
 
 const Button = styled(NormalButton)`
   border-radius: 10px;
-  font-family: $Roboto-reg;
+  font-family: 'Work Sans',sans-serif;
   border: none;
   box-shadow: 0 2px 4px rgba(0,0,0,0.5)
 `;

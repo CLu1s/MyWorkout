@@ -10,7 +10,6 @@ const StyledBigScreen = styled.div`
   transition: background-color 0.5s ease;
 `
 const HeaderTitle = styled.h2`
-  font-family: $IBM-reg;
   color: #FFF;
   font-size: 2.5rem;
   text-align: center;
@@ -43,7 +42,6 @@ const NextButton = styled(Button)`
   color: white;
   box-shadow: 0 2px 4px rgba(0,0,0,0.5);
   text-transform: capitalize;
-  font-family: $Roboto-reg;
   font-size: 26px;
   font-weight: 300;
   margin-top: 15px;

@@ -12,13 +12,11 @@ const StyledWorkOutInfo = styled.div`
   margin-top: 20px
 `
 const WorkOutInfoItem = styled.div`
-  font-family: $Roboto-reg;
   font-size: 30px;
   text-align: center;
   line-height: 1
 `
 const WorkOutInfoTile = styled.div`
-  font-family: $Roboto-reg;
   font-size: 14px;
   text-align: center;
   color: #617078;
@@ -39,9 +37,9 @@ const StyledButton = styled(Button)`
   background-color: #F4F4F8;
   color: #00081B;
   font-weight: 300;
-  margin-left: 10%;
+  margin: 0 5%;
   line-height: 1.4;
-  max-width: 102px
+  max-width: 110px
 `
 const WorkOutInfo = (props) => {
   return(

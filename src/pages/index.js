@@ -4,7 +4,6 @@ import BigScreen from '../components/BigScreen';
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { graphql } from "gatsby"
-
 function returnFilteredObject(object,filter){
   if(object.name === filter){
     return true
