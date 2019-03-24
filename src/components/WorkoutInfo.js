@@ -1,20 +1,73 @@
-import React,{ useState, useEffect } from 'react';
-import Button from './Button';
+import React from 'react';
+import {Button} from './Elements';
+import styled from 'styled-components';
+
+// Components
+
+const StyledWorkOutInfo = styled.div`
+  width: 100%;
+  height: 79px;
+  overflow: hidden;
+  background-color: white;
+  margin-top: 20px
+`
+const WorkOutInfoItem = styled.div`
+  font-family: $Roboto-reg;
+  font-size: 30px;
+  text-align: center;
+  line-height: 1
+`
+const WorkOutInfoTile = styled.div`
+  font-family: $Roboto-reg;
+  font-size: 14px;
+  text-align: center;
+  color: #617078;
+`
+const WorkOutInfoWrapper = styled.div`
+  width: 125px;
+  height: 80%;
+  float: left;
+  margin-top: 2%;
+  padding: 2% 0;
+`
+const WorkOutInfoWrapperWithRightBorder = styled(WorkOutInfoWrapper)`
+  border-right: solid 1px #979797;  
+`
+const StyledButton = styled(Button)`
+  font-size: 18px;
+  text-align: center;
+  background-color: #F4F4F8;
+  color: #00081B;
+  font-weight: 300;
+  margin-left: 10%;
+  line-height: 1.4;
+  max-width: 102px
+`
 const WorkOutInfo = (props) => {
   return(
-    <div className="workout-info">
-      <div className="workout-info__reps">
-        <div className="workout-info__item">{props.reps}</div>
-        <div className="workout-info__title">Repeticiones</div>
-      </div>
-      <div className="workout-info__time">
-        <div className="workout-info__item">{props.tempo}</div>
-        <div className="workout-info__title"> Tiempo</div>
-      </div>
-      <div className="workout-info__rest">
-        <Button className="workout-info__button" text={`Descansar ${props.restTime}`} />
-      </div>
-    </div>
+    <StyledWorkOutInfo>
+      <WorkOutInfoWrapperWithRightBorder>
+        <WorkOutInfoItem>
+          {props.reps}
+        </WorkOutInfoItem>
+        <WorkOutInfoTile>
+          Repeticiones
+        </WorkOutInfoTile>
+      </WorkOutInfoWrapperWithRightBorder>
+      <WorkOutInfoWrapperWithRightBorder>
+        <WorkOutInfoItem>
+          {props.tempo}
+        </WorkOutInfoItem>
+        <WorkOutInfoTile>
+          Tiempo
+        </WorkOutInfoTile>
+      </WorkOutInfoWrapperWithRightBorder>
+      <WorkOutInfoWrapper>
+      <StyledButton>
+            {`Descansar ${props.restTime}`}
+        </StyledButton>
+      </WorkOutInfoWrapper>
+    </StyledWorkOutInfo>
   );
 };
 
