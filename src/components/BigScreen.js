@@ -1,5 +1,59 @@
-import React,{ useState, useEffect } from 'react';
+import React,{ useState} from 'react';
+import styled from 'styled-components';
 import WorkoutInfo from './WorkoutInfo';
+import {Button} from './Elements';
+
+//components
+const StyledBigScreen = styled.div`
+  box-shadow: 0 2px 13px rgba(0,0,0,0.5);
+  background-color: ${props => props.profile === 'luis' ? '#FF0026': '#5603AD' };
+  transition: background-color 0.5s ease;
+`
+const HeaderTitle = styled.h2`
+  font-family: $IBM-reg;
+  color: #FFF;
+  font-size: 2.5rem;
+  text-align: center;
+  text-transform: capitalize
+`
+const Container = styled.div`
+  padding-top: 5%;
+`
+const ExcerciseName = styled.div`
+  color: white;
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 16px;
+  text-transform: capitalize;
+  `
+const Serie = styled(ExcerciseName)`
+  font-size: 32px
+  text-transform: none;
+`
+const Weight = styled(ExcerciseName)`
+  font-size: 30px;
+  text-transform: none;
+`
+const NextButton = styled(Button)`
+  width: 178px;
+  height: 44px;
+  border: none;
+  margin: 15px 30%;
+  border-radius: 10px;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  text-transform: capitalize;
+  font-family: $Roboto-reg;
+  font-size: 26px;
+  font-weight: 300;
+  margin-top: 15px;
+  background-color: ${props => props.profile === 'luis' ? '#5603AD' : '#FF0026'  };
+  transition: background-color 0.5s ease
+`
+const BigScreenWrapper = styled.div`
+  width: 100%;
+`
+// Start main function
 const BigScreen = (props) => {
   const [profile,setProfile] = useState({
     actual: props.dataOfLuis,
@@ -12,7 +66,7 @@ const BigScreen = (props) => {
     let newButtonProfile;
     let luisTempProfile = profile.luis;
     let milhyTempProfile = profile.milhy;
-    if(profile.actual.name == profile.luis.name){
+    if(profile.actual.name === profile.luis.name){
       newProfile = profile.milhy;
       newButtonProfile = profile.luis;
       luisTempProfile = updateProfile(profile.luis);
@@ -34,7 +88,6 @@ const BigScreen = (props) => {
   function updateProfile(currentProfile){
     let profile = currentProfile;
     let exercises = profile.exercises;
-    console.log(profile.exerciseArrayPosition);
     
     profile.exercises = setExercises(exercises,profile.exerciseArrayPosition);
     profile.exerciseArrayPosition = defineArrayPosition(profile);
@@ -80,15 +133,17 @@ const BigScreen = (props) => {
   }
   return(
     <>
-      <div className={`big-screen big-screen--${profile.actual.name}`}>
-        <div className="big-screen__container"> 
-          <div className="big-screen__type">{profile.actual.name}</div>
-          <div className="big-screen__exercise"> {profile.actual.exercises[profile.actual.exerciseArrayPosition].name} </div>
-          <div className="big-screen__serie">Serie {profile.actual.exercises[profile.actual.exerciseArrayPosition].serie} de {profile.actual.exercises[profile.actual.exerciseArrayPosition].maxSerie}</div>
-          <div className="big-screen__weight">Peso: {profile.actual.exercises[profile.actual.exerciseArrayPosition].weight} lb</div>
-          <button className={`button big-screen__button big-screen__button--${profile.button.name}`} onClick={ ()=>{ changeProfile(); } }> Siguiente </button>
-        </div>
-      </div>
+      <StyledBigScreen profile={profile.actual.name}>
+        <Container>
+          <HeaderTitle>{profile.actual.name}</HeaderTitle>
+          <ExcerciseName>{profile.actual.exercises[profile.actual.exerciseArrayPosition].name}</ExcerciseName>
+          <Serie> Serie {profile.actual.exercises[profile.actual.exerciseArrayPosition].serie} de {profile.actual.exercises[profile.actual.exerciseArrayPosition].maxSerie}</Serie>
+          <Weight> Peso: {profile.actual.exercises[profile.actual.exerciseArrayPosition].weight} lb </Weight>
+          <BigScreenWrapper>
+            <NextButton action={ ()=>{ changeProfile(); } } profile={profile.actual.name}> Siguiente </NextButton>
+          </BigScreenWrapper>
+        </Container>
+      </StyledBigScreen>
       <WorkoutInfo reps={profile.actual.exercises[profile.actual.exerciseArrayPosition].reps} tempo={profile.actual.exercises[profile.actual.exerciseArrayPosition].tempo} restTime={profile.actual.exercises[profile.actual.exerciseArrayPosition].restTime} />
     </>
   );
