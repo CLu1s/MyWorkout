@@ -4,6 +4,7 @@
   "exercises": [
     {
       "name": "sentadilla",
+      "bodyPart": "Lower Body",
       "weight": 40,
       "serie": 1,
       "maxSerie": 4,

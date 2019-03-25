@@ -3,7 +3,8 @@
   "exerciseArrayPosition":0,
   "exercises": [
     {
-      "name": "Peso Muerto",
+      "name": "Seated Row to Neck",
+      "bodyPart": "Upper Body",
       "weight": 20,
       "serie": 1,
       "maxSerie": 4,

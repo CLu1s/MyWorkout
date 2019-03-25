@@ -33,6 +33,7 @@ query {
         exerciseArrayPosition
         exercises {
           name
+          bodyPart
           weight
           serie
           maxSerie
