@@ -1,56 +1,46 @@
 import React,{ useState} from 'react';
 import styled from 'styled-components';
 import WorkoutInfo from './WorkoutInfo';
-import {Button} from './Elements';
+import {ThemeColors} from './Elements';
 
 //components
 const StyledBigScreen = styled.div`
-  box-shadow: 0 2px 13px rgba(0,0,0,0.5);
-  background-color: ${props => props.profile === 'luis' ? '#FF0026': '#5603AD' };
+  height: 667px;
+  background-color: ${props => props.profile === 'luis' ? ThemeColors.red : ThemeColors.pink };
   transition: background-color 0.5s ease;
 `
 const HeaderTitle = styled.h2`
-  color: #FFF;
-  font-size: 2.5rem;
-  text-align: center;
-  text-transform: capitalize
+  color: ${ThemeColors.white};
+  font-weight: 700;
+  font-size: 1.031rem;
+  margin-bottom: 30px;
+  text-transform: capitalize;
 `
 const Container = styled.div`
   padding-top: 5%;
+  margin: 0 16px;
 `
+const ExcerciseTitle = styled.div`
+  font-family: 'IBM Plex Sans';
+  font-weight: 400;
+  color: ${ThemeColors.white};
+  font-size: 1.719rem;
+  margin-bottom: 30px;
+`
+
 const ExcerciseName = styled.div`
-  color: white;
-  font-size: 3rem;
-  text-align: center;
-  margin-bottom: 16px;
+  color: ${ThemeColors.white};
+  font-weight: 600;
+  font-size: 2.12rem;
+  margin-bottom: 8px;
   text-transform: capitalize;
   `
-const Serie = styled(ExcerciseName)`
-  font-size: 32px
-  text-transform: none;
-`
-const Weight = styled(ExcerciseName)`
-  font-size: 30px;
-  text-transform: none;
-`
-const NextButton = styled(Button)`
-  width: 178px;
-  height: 44px;
-  border: none;
-  margin: 15px 30%;
-  border-radius: 10px;
-  color: white;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.5);
-  text-transform: capitalize;
-  font-size: 26px;
-  font-weight: 300;
-  margin-top: 15px;
-  background-color: ${props => props.profile === 'luis' ? '#5603AD' : '#FF0026'  };
-  transition: background-color 0.5s ease
-`
-const BigScreenWrapper = styled.div`
-  width: 100%;
-`
+ const ExcerciseBodyPart = styled.div`
+   font-family: 'IBM Plex Sans';
+   color: ${ThemeColors.white};
+   font-weight: 400;
+
+  `
 // Start main function
 const BigScreen = (props) => {
   const [profile,setProfile] = useState({
@@ -134,15 +124,17 @@ const BigScreen = (props) => {
       <StyledBigScreen profile={profile.actual.name}>
         <Container>
           <HeaderTitle>{profile.actual.name}</HeaderTitle>
+          <ExcerciseTitle>Ejercicio: </ExcerciseTitle>
           <ExcerciseName>{profile.actual.exercises[profile.actual.exerciseArrayPosition].name}</ExcerciseName>
-          <Serie> Serie {profile.actual.exercises[profile.actual.exerciseArrayPosition].serie} de {profile.actual.exercises[profile.actual.exerciseArrayPosition].maxSerie}</Serie>
-          <Weight> Peso: {profile.actual.exercises[profile.actual.exerciseArrayPosition].weight} lb </Weight>
-          <BigScreenWrapper>
+          <ExcerciseBodyPart>{profile.actual.exercises[profile.actual.exerciseArrayPosition].bodyPart}</ExcerciseBodyPart>
+          {/* <Serie> Serie {profile.actual.exercises[profile.actual.exerciseArrayPosition].serie} de {profile.actual.exercises[profile.actual.exerciseArrayPosition].maxSerie}</Serie> */}
+          {/* <Weight> Peso: {profile.actual.exercises[profile.actual.exerciseArrayPosition].weight} lb </Weight> */}
+          {/* <BigScreenWrapper>
             <NextButton action={ ()=>{ changeProfile(); } } profile={profile.actual.name}> Siguiente </NextButton>
-          </BigScreenWrapper>
+          </BigScreenWrapper> */}
+          <WorkoutInfo data={profile.actual.exercises[profile.actual.exerciseArrayPosition]} action={changeProfile} profile={profile.actual.name} />
         </Container>
       </StyledBigScreen>
-      <WorkoutInfo reps={profile.actual.exercises[profile.actual.exerciseArrayPosition].reps} tempo={profile.actual.exercises[profile.actual.exerciseArrayPosition].tempo} restTime={profile.actual.exercises[profile.actual.exerciseArrayPosition].restTime} />
     </>
   );
 };
