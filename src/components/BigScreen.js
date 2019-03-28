@@ -13,11 +13,11 @@ const HeaderTitle = styled.h2`
   color: ${ThemeColors.white};
   font-weight: 700;
   font-size: 1.031rem;
-  margin-bottom: 30px;
+  margin-bottom: 18px;
   text-transform: capitalize;
 `
 const Container = styled.div`
-  padding-top: 5%;
+  padding-top: 10%;
   margin: 0 16px;
 `
 const ExcerciseTitle = styled.div`
@@ -25,7 +25,7 @@ const ExcerciseTitle = styled.div`
   font-weight: 400;
   color: ${ThemeColors.white};
   font-size: 1.719rem;
-  margin-bottom: 30px;
+  margin-bottom: 18px;
 `
 
 const ExcerciseName = styled.div`
