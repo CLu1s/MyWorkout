@@ -12,8 +12,8 @@ function returnFilteredObject(object,filter){
 }
 
 const IndexPage = ({data}) => {
-  const dataOfLuis = data.allWorkoutsJson.edges.find(item => returnFilteredObject(item.node,"luis"));
-  const dataOfMilhy = data.allWorkoutsJson.edges.find(item => returnFilteredObject(item.node,"milhy"));
+  const dataOfLuis = data.allMongodbMyWorkoutWorkouts.edges.find(item => returnFilteredObject(item.node,"luis"));
+  const dataOfMilhy = data.allMongodbMyWorkoutWorkouts.edges.find(item => returnFilteredObject(item.node,"milhy"));
   return (
   <Layout>
     <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
@@ -26,12 +26,12 @@ export default IndexPage
 
 export const query = graphql`
 query {
-  allWorkoutsJson {
-    edges {
+	allMongodbMyWorkoutWorkouts {
+	  edges {
       node {
         name
         exerciseArrayPosition
-        exercises {
+        exercises{
           name
           bodyPart
           weight
@@ -43,6 +43,6 @@ query {
         }
       }
     }
-  }
+	} 
 }
 `
