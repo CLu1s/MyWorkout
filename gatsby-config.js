@@ -26,6 +26,20 @@ module.exports = {
         pathToConfigModule: `src/utils/typography`,
       },
     },
+    /*
+     * Gatsby's data processing layer begins with “source” plugins. Here we
+     * setup the site to pull data from the "documents" collection in a local
+     * MongoDB instance
+     */
+    {
+      resolve: `gatsby-source-mongodb`,
+      options: { 
+        dbName: `myWorkout`, 
+        collection: `workouts`,
+        connectionString: 'mongodb+srv://workoutUser:workoutUserPassword@cluster0-xglzt.mongodb.net',
+        extraParams: { replicaSet: 'test',retryWrites: true }
+      },
+    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
